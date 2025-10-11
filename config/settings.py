@@ -2,7 +2,7 @@ from pathlib import Path
 from decouple import config
 from django.conf.global_settings import AUTH_USER_MODEL
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -12,9 +12,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', 'django-insecure-+x+zgwj=uoid^ky%hz&!y$#y8og5rp)w7^)&828hmt2)ug_bls')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", True) == True
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', '127.0.0.43').split('')
+DEBUG = config("DEBUG", default=True, cast=bool) == True
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', '127.0.0.1').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -24,6 +25,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3-rd party
+    'rest_framework',
+
+    # local
+    'apps.core',
 ]
 
 MIDDLEWARE = [
