@@ -2,3 +2,4 @@ Django
 django-unfold
 djangorestframework
 python-decouple
+pillow
